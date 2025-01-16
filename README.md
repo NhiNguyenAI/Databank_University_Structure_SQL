@@ -57,6 +57,6 @@ This project is a database management system designed for a university. The syst
 ![Database Diagram](image.png)
 
 For questions or feedback, please contact:
-- GitHub: [username](https://github.com/NhiNguyenAI)
+- GitHub: [NhiNguyenAI](https://github.com/NhiNguyenAI)
 
 
