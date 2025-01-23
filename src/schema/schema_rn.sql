@@ -1,48 +1,48 @@
-DROP TABLE  hoeren;  
-DROP TABLE  voraussetzen;
-DROP TABLE  pruefen;
-DROP TABLE  Vorlesungen;
-DROP TABLE  Studenten;
-DROP TABLE  Assistenten;
-DROP TABLE  Professoren;
+DROP TABLE  listen;  
+DROP TABLE  prerequisite;
+DROP TABLE  test;
+DROP TABLE  Lectures;
+DROP TABLE  Student;
+DROP TABLE  Assistants;
+DROP TABLE  Professors;
 
-CREATE TABLE  Studenten
+CREATE TABLE  Student
        (MatrNr         INTEGER PRIMARY KEY,
         Name           VARCHAR(30) NOT NULL,
         Semester       INTEGER);
 
-CREATE TABLE  Professoren
+CREATE TABLE  Professors
        (PersNr         INTEGER PRIMARY KEY,
         Name           VARCHAR(30) NOT NULL,
         Rang           CHAR(2) CHECK (Rang in ('C2', 'C3', 'C4')),
         Raum           INTEGER UNIQUE);
 
-CREATE TABLE  Assistenten
+CREATE TABLE  Assistants
        (PersNr         INTEGER PRIMARY KEY,
         Name           VARCHAR(30) NOT NULL,
         Fachgebiet     VARCHAR(30),
         Boss           INTEGER,
-        FOREIGN KEY    (Boss) REFERENCES Professoren);
+        FOREIGN KEY    (Boss) REFERENCES Professors);
 
-CREATE TABLE  Vorlesungen
+CREATE TABLE  Lectures
        (VorlNr         INTEGER PRIMARY KEY,
         Titel          VARCHAR(30),
         SWS            INTEGER,
-        gelesenVon     INTEGER REFERENCES Professoren);
+        gelesenVon     INTEGER REFERENCES Professors);
 
-CREATE TABLE  hoeren
-       (MatrNr         INTEGER REFERENCES Studenten ON DELETE CASCADE,
-        VorlNr         INTEGER REFERENCES Vorlesungen ON DELETE CASCADE,
+CREATE TABLE  listen
+       (MatrNr         INTEGER REFERENCES Student ON DELETE CASCADE,
+        VorlNr         INTEGER REFERENCES Lectures ON DELETE CASCADE,
         PRIMARY KEY    (MatrNr, VorlNr));
 
-CREATE TABLE  voraussetzen
-       (Vorgaenger     INTEGER REFERENCES Vorlesungen ON DELETE CASCADE,
-        Nachfolger     INTEGER REFERENCES Vorlesungen ON DELETE CASCADE,
+CREATE TABLE  prerequisite
+       (Vorgaenger     INTEGER REFERENCES Lectures ON DELETE CASCADE,
+        Nachfolger     INTEGER REFERENCES Lectures ON DELETE CASCADE,
         PRIMARY KEY    (Vorgaenger, Nachfolger));
 
-CREATE TABLE  pruefen
-       (MatrNr         INTEGER REFERENCES Studenten ON DELETE CASCADE,
-        VorlNr         INTEGER REFERENCES Vorlesungen,
-        PersNr         INTEGER REFERENCES Professoren,
+CREATE TABLE  test
+       (MatrNr         INTEGER REFERENCES Student ON DELETE CASCADE,
+        VorlNr         INTEGER REFERENCES Lectures,
+        PersNr         INTEGER REFERENCES Professors,
         Note           NUMERIC(2,1) CHECK (Note between 0.7 and 5.0),
         PRIMARY KEY    (MatrNr, VorlNr));
