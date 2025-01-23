@@ -60,6 +60,9 @@ This project is a database management system designed for a university. The syst
 
 ![ER Diagram](image/ER_Diagramm.png)
 
+## References 
+Foundational: Inspired by the content covered in the Lecture: Database systems (Winter Semester 24/25) from Hochschule Fulda, Germany.
+
 For questions or feedback, please contact:
 - GitHub: [NhiNguyenAI](https://github.com/NhiNguyenAI)
 
