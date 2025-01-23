@@ -54,11 +54,11 @@ This project is a database management system designed for a university. The syst
 
 ## Database Diagram
 
-![Database Diagram](../data_table.png)
+![Database Diagram](images/data_table.png)
 
 ## ER Diagramm 
 
-![ER Diagram](../ER_Diagramm.drawio.png)
+![ER Diagram](images/ER_Diagramm.drawio.png)
 
 For questions or feedback, please contact:
 - GitHub: [NhiNguyenAI](https://github.com/NhiNguyenAI)
