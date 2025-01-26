@@ -1,5 +1,5 @@
 DROP TABLE  hoeren;  
-DROP TABLE  voraussetzen;
+-- DROP TABLE  voraussetzen;
 DROP TABLE  pruefen;
 DROP TABLE  Vorlesungen;
 DROP TABLE  Studenten;
@@ -9,7 +9,7 @@ DROP TABLE  Professoren;
 CREATE TABLE  Studenten
        (MatrNr         INTEGER PRIMARY KEY,
         Name           VARCHAR(30) NOT NULL,
-        Semester       INTEGER check (Semester BETWEEN 1 AND 3));
+        Semester       INTEGER check (Semester BETWEEN 1 AND 13));
 
 CREATE TABLE  Professoren
        (PersNr         INTEGER PRIMARY KEY,
@@ -43,6 +43,6 @@ CREATE TABLE  voraussetzen
 CREATE TABLE  pruefen
        (MatrNr         INTEGER REFERENCES Studenten ON DELETE CASCADE,
         VorlNr         INTEGER REFERENCES Vorlesungen,
-        PersNr         INTEGER REFERENCES Professoren,
+        PersNr         INTEGER REFERENCES Professoren on DELETE set NULL,
         Note           NUMERIC(2,1) CHECK (Note between 0.7 and 5.0),
         PRIMARY KEY    (MatrNr, VorlNr));
