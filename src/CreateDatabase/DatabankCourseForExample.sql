@@ -1,3 +1,4 @@
 // Create the database
 
-CREATE DATABASE Databank_Course;
+CREATE DATABASE UniversityDataManagement;
+
